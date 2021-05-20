@@ -6,8 +6,8 @@
   "author": "<alanhorcrux@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "test": "jest"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "ts-jest": "^26.5.6",
     "ts-node": "^9.1.1",
     "ts-node-dev": "^1.1.6",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^4.2.4"
   }
 }
