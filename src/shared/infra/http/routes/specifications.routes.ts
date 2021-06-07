@@ -6,7 +6,12 @@ const specificationsRoutes = Router();
 const createSpecificationController = new CreateSpecificationsController();
 const listSpecificationsController = new ListSpecificationsController();
 
-specificationsRoutes.post("/", createSpecificationController.handle);
+specificationsRoutes.post(
+  "/",
+  ensureAuthenticated,
+  ensureAdmin,
+  createSpecificationController.handle
+);
 
 specificationsRoutes.get("/", listSpecificationsController.handle);
 
