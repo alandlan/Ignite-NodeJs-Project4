@@ -6,6 +6,12 @@ import { ICarsRepository } from "../ICarsRepository";
 class CarsRepositoryInMemory implements ICarsRepository {
   cars: Car[] = [];
 
+  async findAllAvailable(): Promise<Car[]> {
+    const cars = this.cars.filter((car) => car.available === true);
+
+    return cars;
+  }
+
   async findByLicensePlate(license_plate: string): Promise<Car | undefined> {
     return this.cars.find((car) => car.license_plate === license_plate);
   }

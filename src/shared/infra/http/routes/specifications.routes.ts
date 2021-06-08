@@ -2,6 +2,9 @@ import { CreateSpecificationsController } from "@modules/cars/useCases/createSpe
 import { ListSpecificationsController } from "@modules/cars/useCases/listSpecifications/ListSpecificationsController";
 import { Router } from "express";
 
+import { ensureAdmin } from "../middlewares/ensureAdmin";
+import { ensureAuthenticated } from "../middlewares/ensureAuthenticated";
+
 const specificationsRoutes = Router();
 const createSpecificationController = new CreateSpecificationsController();
 const listSpecificationsController = new ListSpecificationsController();
