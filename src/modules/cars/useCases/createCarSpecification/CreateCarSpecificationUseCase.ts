@@ -26,8 +26,6 @@ class CreateCarSpecificationUseCase {
       specifications_id
     );
 
-    if (carsExists.specifications === undefined) carsExists.specifications = [];
-
     carsExists.specifications = specifications;
 
     const car = await this.carsRepository.create(carsExists);
