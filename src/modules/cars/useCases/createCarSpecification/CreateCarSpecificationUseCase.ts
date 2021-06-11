@@ -1,5 +1,5 @@
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
-import { inject } from "tsyringe";
+import { ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
 
 import { AppError } from "@shared/errors/AppError";
 
@@ -11,7 +11,8 @@ interface IRequest {
 class CreateCarSpecificationUseCase {
   constructor(
     // @inject("CarsRepository")
-    private carsRepository: ICarsRepository
+    private carsRepository: ICarsRepository,
+    private specificationsRepository: ISpecificationsRepository
   ) {}
 
   async execute({ car_id, specifications_id }: IRequest): Promise<void> {
@@ -20,6 +21,18 @@ class CreateCarSpecificationUseCase {
     if (!carsExists) {
       throw new AppError("Car does not exists!");
     }
+
+    const specifications = await this.specificationsRepository.findByIds(
+      specifications_id
+    );
+
+    if (carsExists.specifications === undefined) carsExists.specifications = [];
+
+    carsExists.specifications = specifications;
+
+    const car = await this.carsRepository.create(carsExists);
+
+    console.log(car);
   }
 }
 

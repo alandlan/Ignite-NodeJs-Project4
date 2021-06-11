@@ -6,7 +6,7 @@ import { ICarsRepository } from "../ICarsRepository";
 class CarsRepositoryInMemory implements ICarsRepository {
   cars: Car[] = [];
 
-  async findById(id: string): Promise<Car | undefined> {
+  async findById(id: string): Promise<Car> {
     const car = this.cars.find((car) => car.id === id);
 
     return car;
@@ -32,7 +32,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
     return cars;
   }
 
-  async findByLicensePlate(license_plate: string): Promise<Car | undefined> {
+  async findByLicensePlate(license_plate: string): Promise<Car> {
     return this.cars.find((car) => car.license_plate === license_plate);
   }
 

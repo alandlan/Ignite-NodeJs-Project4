@@ -44,7 +44,7 @@ class Car {
   category!: Category;
 
   @Column()
-  category_id?: string;
+  category_id!: string;
 
   @ManyToMany(() => Specification)
   @JoinTable({
