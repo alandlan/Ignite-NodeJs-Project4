@@ -15,7 +15,7 @@ class CreateCarSpecificationUseCase {
     private specificationsRepository: ISpecificationsRepository
   ) {}
 
-  async execute({ car_id, specifications_id }: IRequest): Promise<void> {
+  async execute({ car_id, specifications_id }: IRequest): Promise<Car> {
     const carsExists = await this.carsRepository.findById(car_id);
 
     if (!carsExists) {
@@ -30,7 +30,7 @@ class CreateCarSpecificationUseCase {
 
     const car = await this.carsRepository.create(carsExists);
 
-    console.log(car);
+    return car;
   }
 }
 
