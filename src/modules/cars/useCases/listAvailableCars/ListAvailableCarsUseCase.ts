@@ -1,5 +1,6 @@
 import { Car } from "@modules/cars/infra/typeorm/entities/Car";
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
+import { ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
 import { inject, injectable } from "tsyringe";
 
 interface IRequest {
@@ -11,7 +12,8 @@ interface IRequest {
 @injectable()
 class ListAvailableCarsUseCase {
   constructor(
-    @inject("CarsRepository") private carsRepository: ICarsRepository
+    @inject("CarsRepository")
+    private carsRepository: ICarsRepository
   ) {}
   async execute({ category_id, brand, name }: IRequest): Promise<Car[]> {
     const cars = await this.carsRepository.findAllAvailable(
@@ -20,6 +22,12 @@ class ListAvailableCarsUseCase {
       name
     );
     return cars;
+  }
+
+  async findById(id: string): Promise<Car> {
+    const car = await this.carsRepository.findById(id);
+
+    return car;
   }
 }
 

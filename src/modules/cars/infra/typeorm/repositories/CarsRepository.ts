@@ -13,7 +13,9 @@ class CarsRepository implements ICarsRepository {
   async findById(id: string): Promise<Car> {
     const car = await this.repository.findOne(id);
 
-    return car;
+    const spec = car?.specifications;
+
+    return car!;
   }
   async findAllAvailable(
     brand?: string,
@@ -71,7 +73,7 @@ class CarsRepository implements ICarsRepository {
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = await this.repository.findOne({ license_plate });
 
-    return car;
+    return car!;
   }
 }
 

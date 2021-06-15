@@ -19,6 +19,18 @@ class ListAvailableCarsController {
 
     return response.json(cars);
   }
+
+  async findById(request: Request, response: Response): Promise<Response> {
+    const { id } = request.params;
+
+    const listAvailableCarsUseCase = container.resolve(
+      ListAvailableCarsUseCase
+    );
+
+    const car = await listAvailableCarsUseCase.findById(id as string);
+
+    return response.status(200).json(car);
+  }
 }
 
 export { ListAvailableCarsController };

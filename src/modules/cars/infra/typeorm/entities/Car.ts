@@ -46,10 +46,10 @@ class Car {
   @Column()
   category_id!: string;
 
-  @ManyToMany(() => Specification)
+  @ManyToMany(() => Specification, { eager: true })
   @JoinTable({
     name: "specifications_cars",
-    joinColumns: [{ name: "car_id" }],
+    joinColumns: [{ name: "car_id", referencedColumnName: "id" }],
     inverseJoinColumns: [{ name: "specification_id" }],
   })
   specifications!: Specification[];

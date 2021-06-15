@@ -21,6 +21,8 @@ carsRoutes.post(
 
 carsRoutes.get("/available", listAvailableCarsController.handle);
 
+carsRoutes.get("/:id", listAvailableCarsController.findById);
+
 carsRoutes.post(
   "/specifications/:id",
   ensureAuthenticated,
