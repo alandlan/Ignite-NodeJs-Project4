@@ -15,8 +15,6 @@ class CarsRepository implements ICarsRepository {
       relations: ["specifications"],
     });
 
-    const spec = car?.specifications;
-
     return car!;
   }
   async findAllAvailable(
@@ -26,6 +24,7 @@ class CarsRepository implements ICarsRepository {
   ): Promise<Car[]> {
     const carsQuery = await this.repository
       .createQueryBuilder("c")
+      .leftJoinAndSelect("c.specifications", "specifications")
       .where("available = :available", { available: true });
 
     if (brand) {
@@ -39,6 +38,8 @@ class CarsRepository implements ICarsRepository {
     if (category_id) {
       carsQuery.andWhere("c.category_id = :category_id", { category_id });
     }
+
+    // carsQuery.relation("specifications");
 
     const cars = await carsQuery.getMany();
 
