@@ -13,6 +13,12 @@ class ListSpecificationsUseCase {
     const specifications = await this.specificationsRepository.list();
     return specifications;
   }
+
+  async getById(id: string): Promise<Specification> {
+    const specification = await this.specificationsRepository.findById(id);
+
+    return specification;
+  }
 }
 
 export { ListSpecificationsUseCase };

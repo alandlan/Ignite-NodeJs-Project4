@@ -18,4 +18,6 @@ specificationsRoutes.post(
 
 specificationsRoutes.get("/", listSpecificationsController.handle);
 
+specificationsRoutes.get("/:id", listSpecificationsController.getById);
+
 export { specificationsRoutes };

@@ -46,7 +46,7 @@ class Car {
   @Column()
   category_id!: string;
 
-  @ManyToMany(() => Specification, { eager: true })
+  @ManyToMany(() => Specification, (specifications) => specifications.cars)
   @JoinTable({
     name: "specifications_cars",
     joinColumns: [{ name: "car_id", referencedColumnName: "id" }],
