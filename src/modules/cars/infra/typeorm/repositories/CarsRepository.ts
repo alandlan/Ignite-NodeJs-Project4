@@ -39,8 +39,6 @@ class CarsRepository implements ICarsRepository {
       carsQuery.andWhere("c.category_id = :category_id", { category_id });
     }
 
-    // carsQuery.relation("specifications");
-
     const cars = await carsQuery.getMany();
 
     return cars;

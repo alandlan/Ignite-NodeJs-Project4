@@ -14,6 +14,12 @@ class ListCategoriesUseCase {
 
     return categories;
   }
+
+  async getById(id: string): Promise<Category> {
+    const categories = await this.categoriesRespository.getById(id);
+
+    return categories;
+  }
 }
 
 export { ListCategoriesUseCase };

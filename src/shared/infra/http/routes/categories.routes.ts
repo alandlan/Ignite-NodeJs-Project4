@@ -24,6 +24,8 @@ categoriesRoutes.post(
 
 categoriesRoutes.get("/", listCategoryController.handle);
 
+categoriesRoutes.get("/:id", listCategoryController.getById);
+
 categoriesRoutes.post(
   "/import",
   ensureAuthenticated,
