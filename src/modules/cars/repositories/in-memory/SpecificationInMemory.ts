@@ -6,6 +6,9 @@ import {
 } from "../ISpecificationsRepository";
 
 class SpecificationInMemory implements ISpecificationsRepository {
+  findById(id: string): Promise<Specification> {
+    throw new Error("Method not implemented.");
+  }
   specifications: Specification[] = [];
   async create({
     name,

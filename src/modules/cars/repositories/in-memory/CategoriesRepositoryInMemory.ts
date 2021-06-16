@@ -5,6 +5,9 @@ import {
 } from "../ICategoriesRepository";
 
 class CategoriesRepositoryInMemory implements ICategoriesRespository {
+  getById(id: string): Promise<Category> {
+    throw new Error("Method not implemented.");
+  }
   categories: Category[] = [];
 
   async findByName(name: string): Promise<Category | undefined> {
