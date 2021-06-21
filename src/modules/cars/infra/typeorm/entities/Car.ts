@@ -46,6 +46,9 @@ class Car {
   @Column()
   category_id!: string;
 
+  @CreateDateColumn()
+  created_at!: Date;
+
   @ManyToMany(() => Specification, (specifications) => specifications.cars)
   @JoinTable({
     name: "specifications_cars",
@@ -53,9 +56,6 @@ class Car {
     inverseJoinColumns: [{ name: "specification_id" }],
   })
   specifications!: Specification[];
-
-  @CreateDateColumn()
-  created_at!: Date;
 
   constructor() {
     if (!this.id) {
